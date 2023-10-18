@@ -2,6 +2,8 @@ import React from "react";
 import "./Header.css";
 import { Avatar } from "@mui/material";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import SearchIcon from "@mui/icons-material/Search";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
 export default function Header() {
   return (
@@ -10,8 +12,13 @@ export default function Header() {
         <Avatar className="header__avatar" alt="Morteza" src="" />
         <AccessTimeIcon />
       </div>
-      <div className="header__search">Header Search</div>
-      <div className="header__right">Header right</div>
+      <div className="header__search">
+        <SearchIcon />
+        <input placeholder="Search..." />
+      </div>
+      <div className="header__right">
+        <HelpOutlineIcon />
+      </div>
     </div>
   );
 }
