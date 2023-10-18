@@ -1,13 +1,14 @@
 import "./App.css";
 import Header from "./Components/Header";
+import Sidebar from "./Components/Sidebar";
 
 function App() {
   return (
     <div className="app">
-      <header>
-        hello World This Is My First Page in this project Slack Clone
-      </header>
       <Header />
+      <div className="app__body">
+        <Sidebar />
+      </div>
     </div>
   );
 }
