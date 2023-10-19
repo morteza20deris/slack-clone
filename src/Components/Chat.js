@@ -12,6 +12,7 @@ import {
   query,
 } from "firebase/firestore";
 import Message from "./Message";
+import ChatInput from "./ChatInput";
 
 export default function Chat() {
   const { roomId } = useParams();
@@ -35,7 +36,6 @@ export default function Chat() {
       //   });
     }
   }, [roomId]);
-  console.log(roomMessages);
   return (
     <div className="chat">
       <div className="chat__header">
@@ -62,6 +62,7 @@ export default function Chat() {
           />
         ))}
       </div>
+      <ChatInput channelName={roomDetails?.name} channelId={roomId} />
     </div>
   );
 }

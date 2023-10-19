@@ -13,11 +13,11 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AddIcon from "@mui/icons-material/Add";
 import SidebarOption from "./SidebarOption";
-import { db } from "../Configs/FirebaseConfig";
+import { Authentication, db } from "../Configs/FirebaseConfig";
 import { collection, onSnapshot } from "firebase/firestore";
 function Sidebar() {
   const [channels, setChannels] = useState([]);
-
+  const currentUser = Authentication.currentUser;
   useEffect(() => {
     const test = async () => {
       onSnapshot(collection(db, "rooms"), (collection) => {
@@ -39,7 +39,7 @@ function Sidebar() {
           <h2>Slack Clone</h2>
           <h3>
             <FiberManualRecordIcon className="username__icon" />
-            Morteza Deris
+            {currentUser.displayName}
           </h3>
         </div>
         <CreateIcon />
