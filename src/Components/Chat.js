@@ -16,7 +16,7 @@ import Message from "./Message";
 export default function Chat() {
   const { roomId } = useParams();
   const [roomDetails, setRoomDetails] = useState(null);
-  const [roomMessages, setRoomMessages] = useState(null);
+  const [roomMessages, setRoomMessages] = useState([]);
   useEffect(() => {
     if (roomId) {
       onSnapshot(doc(db, "rooms", roomId), (document) => {
@@ -53,7 +53,14 @@ export default function Chat() {
         </div>
       </div>
       <div className="chat__messages">
-        <Message />
+        {roomMessages.map(({ username, userImage, message, timeStamp }) => (
+          <Message
+            message={message}
+            timeStamp={timeStamp}
+            userImage={userImage}
+            username={username}
+          />
+        ))}
       </div>
     </div>
   );
