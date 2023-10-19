@@ -14,7 +14,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AddIcon from "@mui/icons-material/Add";
 import SidebarOption from "./SidebarOption";
 import { db } from "../Configs/FirebaseConfig";
-import { collection, doc, getDocs, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
 function Sidebar() {
   const [channels, setChannels] = useState([]);
 
@@ -55,10 +55,14 @@ function Sidebar() {
       <hr />
       <SidebarOption Icon={ExpandMoreIcon} title="Channels" />
       <hr />
-      <SidebarOption Icon={AddIcon} title="Add Channel" />
+      <SidebarOption
+        addChannelOptions={true}
+        Icon={AddIcon}
+        title="Add Channel"
+      />
       {/* Get Channels from Db and list them here using SidebarOption Component */}
       {channels.map((channel) => (
-        <SidebarOption key={channel.id} title={channel.name} />
+        <SidebarOption key={channel.id} id={channel.id} title={channel.name} />
       ))}
     </div>
   );
