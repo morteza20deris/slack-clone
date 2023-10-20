@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Chat.css";
 import { useParams } from "react-router-dom";
 import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
@@ -18,6 +18,45 @@ export default function Chat() {
   const { roomId } = useParams();
   const [roomDetails, setRoomDetails] = useState(null);
   const [roomMessages, setRoomMessages] = useState([]);
+  const [showScrollBtn, setShowScrollBtn] = useState(false);
+  const endPageRef = useRef(null);
+  const chatPageRef = useRef(null);
+  const endPagePercentage = 150;
+  const scrollToEndOfPage = () => {
+    chatPageRef.current.scrollTo({
+      top:
+        chatPageRef.current?.scrollHeight - chatPageRef.current?.clientHeight,
+      behavior: "smooth",
+    });
+  };
+
+  useEffect(() => {
+    const max =
+      chatPageRef.current?.scrollHeight - chatPageRef.current?.clientHeight;
+
+    const test = max - endPagePercentage;
+
+    if (chatPageRef.current?.scrollTop > test) {
+      scrollToEndOfPage();
+    }
+  }, [roomMessages.length]);
+  useEffect(() => {
+    scrollDownButtonHandler();
+  }, [chatPageRef.current?.scrollTop, roomMessages]);
+
+  useEffect(() => {
+    scrollToEndOfPage();
+  }, [roomDetails.name]);
+
+  const scrollDownButtonHandler = () => {
+    const max =
+      chatPageRef.current?.scrollHeight - chatPageRef.current?.clientHeight;
+    const test = max - endPagePercentage;
+    chatPageRef.current?.scrollTop < test
+      ? setShowScrollBtn(true)
+      : setShowScrollBtn(false);
+  };
+
   useEffect(() => {
     if (roomId) {
       onSnapshot(doc(db, "rooms", roomId), (document) => {
@@ -30,14 +69,17 @@ export default function Chat() {
       onSnapshot(test, (messages) => {
         setRoomMessages(messages.docs.map((doc) => doc.data()));
       });
-
-      //   onSnapshot(test2, (document) => {
-      //     setRoomMessages(document.data());
-      //   });
+      scrollDownButtonHandler();
     }
   }, [roomId]);
   return (
-    <div className="chat">
+    <div
+      ref={chatPageRef}
+      onScroll={(e) => {
+        scrollDownButtonHandler();
+      }}
+      className="chat"
+    >
       <div className="chat__header">
         <div className="chat__headerLeft">
           <h4 className="chat__channelName">
@@ -55,14 +97,24 @@ export default function Chat() {
       <div className="chat__messages">
         {roomMessages.map(({ username, userImage, message, timeStamp }) => (
           <Message
+            key={timeStamp}
             message={message}
             timeStamp={timeStamp}
             userImage={userImage}
             username={username}
           />
         ))}
+        <div ref={endPageRef} />
       </div>
-      <ChatInput channelName={roomDetails?.name} channelId={roomId} />
+
+      <ChatInput
+        scrollDownBtnShow={showScrollBtn}
+        channelName={roomDetails?.name}
+        channelId={roomId}
+        scrollDownBtnClickHandler={() => {
+          scrollToEndOfPage();
+        }}
+      />
     </div>
   );
 }

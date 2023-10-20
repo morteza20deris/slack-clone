@@ -8,7 +8,6 @@ import { Authentication } from "../Configs/FirebaseConfig";
 
 export default function Header() {
   const currentUser = Authentication.currentUser;
-  console.log(currentUser.photoURL);
   return (
     <div className="header">
       <div className="header__left">
