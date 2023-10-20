@@ -37,9 +37,10 @@ function Sidebar() {
         <CreateIcon />
       </div>
 
-      <SidebarOption Icon={ExpandMoreIcon} title="Channels" />
+      <SidebarOption disabled={true} Icon={ExpandMoreIcon} title="Channels" />
       <hr />
       <SidebarOption
+        key={"Add Channel"}
         addChannelOptions={true}
         Icon={AddIcon}
         title="Add Channel"

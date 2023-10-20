@@ -4,7 +4,7 @@ import "./SidebarOption.css";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../Configs/FirebaseConfig";
 
-function SidebarOption({ Icon, title, addChannelOptions, id }) {
+function SidebarOption({ Icon, title, addChannelOptions, id, disabled }) {
   const navigate = useNavigate();
   const selectChannel = () => {
     if (id) {
@@ -21,6 +21,7 @@ function SidebarOption({ Icon, title, addChannelOptions, id }) {
   };
   return (
     <div
+      style={{ pointerEvents: disabled && "none" }}
       className="sidebarOption"
       onClick={addChannelOptions ? addChannel : selectChannel}
     >

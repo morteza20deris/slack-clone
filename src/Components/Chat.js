@@ -46,7 +46,7 @@ export default function Chat() {
 
   useEffect(() => {
     scrollToEndOfPage();
-  }, [roomDetails.name]);
+  }, [roomDetails?.name]);
 
   const scrollDownButtonHandler = () => {
     const max =

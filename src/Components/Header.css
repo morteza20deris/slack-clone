@@ -17,7 +17,9 @@
     margin-right: 30px;
     
 }
-
+.header__avatar{
+    cursor: pointer;
+}
 .header__search{
     flex: 0.4;
     background-color: #421f44;
