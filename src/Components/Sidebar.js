@@ -2,6 +2,7 @@ import AddIcon from "@mui/icons-material/Add";
 import CreateIcon from "@mui/icons-material/Create";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+import Logo from "../Assets/Logo.png";
 import { collection, onSnapshot } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { Authentication, db } from "../Configs/FirebaseConfig";
@@ -28,6 +29,7 @@ function Sidebar() {
     <div className="sidebar">
       <div className="sidebar__header">
         <div className="sidebar__info">
+          <img className="sidebar__siteLogo" src={Logo} alt="logo" />
           <h2>Slack Clone</h2>
           <h3>
             <FiberManualRecordIcon className="username__icon" />
