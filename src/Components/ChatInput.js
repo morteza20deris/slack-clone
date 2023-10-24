@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import "./ChatInput.css";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { Authentication, db } from "../Configs/FirebaseConfig";
 import ArrowCircleDownTwoToneIcon from "@mui/icons-material/ArrowCircleDownTwoTone";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import React, { useState } from "react";
+import { Authentication, db } from "../Configs/FirebaseConfig";
+import "./ChatInput.css";
 
 export default function ChatInput({
   channelName,
@@ -12,6 +12,7 @@ export default function ChatInput({
 }) {
   const [input, setInput] = useState("");
   const currentUser = Authentication.currentUser;
+
   const sendButtonHandler = (e) => {
     e.preventDefault();
     addDoc(collection(db, "rooms", channelId, "Messages"), {
@@ -26,6 +27,7 @@ export default function ChatInput({
     <div className="chatInput">
       <form>
         <input
+          id="chatInput"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder={`Message ${channelName?.toLowerCase()}`}

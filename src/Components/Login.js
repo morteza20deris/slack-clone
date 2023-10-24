@@ -28,7 +28,11 @@ function Login() {
         <h1>Sign in to Slack Clone</h1>
         <p>slack-clone-5.web.app</p>
         <Button
-          onClick={!Authentication.currentUser && googleSignInHandler}
+          onClick={() => {
+            if (!Authentication.currentUser) {
+              googleSignInHandler();
+            }
+          }}
         >{`${loginState ? "Log in With Google" : "Please wait"}`}</Button>
       </div>
     </div>

@@ -74,6 +74,7 @@ export default function Chat() {
   }, [roomId]);
   return (
     <div
+      id="chat"
       ref={chatPageRef}
       onScroll={(e) => {
         scrollDownButtonHandler();

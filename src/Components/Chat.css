@@ -3,6 +3,7 @@
     flex-grow: 1;
     overflow-y: scroll;
     padding-bottom: 150px;
+    /* transition: 0.5s; */
 }
 .chat__header{
     display: flex;
