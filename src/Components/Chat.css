@@ -1,9 +1,11 @@
 .chat{
-    flex: 0.7;
+    flex: 1;
+    width: 100%;
     flex-grow: 1;
     overflow-y: scroll;
     padding-bottom: 150px;
     /* transition: 0.5s; */
+    z-index: 1;
 }
 .chat__header{
     display: flex;

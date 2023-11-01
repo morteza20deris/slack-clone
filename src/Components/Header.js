@@ -12,16 +12,19 @@ export default function Header() {
   const chat = document.getElementById("chat");
 
   useEffect(() => {
-    if (sidebar && showSideBar && chat) {
+    if (sidebar && showSideBar) {
       sidebar.style.transform = "translate(0)";
-    } else if (sidebar && !showSideBar && chat) {
+      sidebar.style.display = "";
+      chatInput.style.width = chat.offsetWidth - 90 + "px";
+    } else if (sidebar && !showSideBar) {
       sidebar.style.transform = "translate(-100%)";
+      sidebar.style.display = "none";
+      chatInput.style.width = chat.offsetWidth - 90 + "px";
     }
-    if (chatInput) {
-      chatInput.style.width = chat.offsetWidth + "px";
-    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showSideBar]);
+
   return (
     <>
       <div className="header">
