@@ -4,7 +4,6 @@
     flex-grow: 1;
     overflow-y: scroll;
     padding-bottom: 150px;
-    /* transition: 0.5s; */
     z-index: 1;
 }
 .chat__header{

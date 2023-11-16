@@ -1,10 +1,11 @@
 import React from "react";
 import "./Message.css";
+import { Avatar } from "@mui/material";
 function Message({ message, timeStamp, username, userImage }) {
   return (
     <div className="message">
       {userImage && (
-        <img
+        <Avatar
           style={{ backgroundColor: "gray" }}
           src={userImage}
           alt={username}
