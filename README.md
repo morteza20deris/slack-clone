@@ -1,4 +1,4 @@
-deployed website: https://slack-clone-5.web.app
+deployed website: https://slack-clone-5.web.app or https://slack-clone-orcin-iota.vercel.app/
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
